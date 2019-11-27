@@ -9,3 +9,12 @@ services:
       - ./basic:/var/www/html
       - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
       - ./basic/cachegrind:/tmp/xdebug
+  slow-composer:
+    build: ./docker
+    ports:
+      - 8082:80
+    volumes:
+      - ./slow-composer:/var/www/html
+      - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      - ./docker/default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./slow-composer/cachegrind:/tmp/xdebug
