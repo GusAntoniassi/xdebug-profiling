@@ -2,10 +2,10 @@ version: '3'
 
 services:
   basic:
-    build: .
+    build: ./docker
     ports:
       - 8081:80
     volumes:
       - ./basic:/var/www/html
-      - ./xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
       - ./basic/cachegrind:/tmp/xdebug
