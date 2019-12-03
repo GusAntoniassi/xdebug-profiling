@@ -18,3 +18,14 @@ services:
       - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
       - ./docker/default.conf:/etc/apache2/sites-available/000-default.conf
       - ./slow-composer/cachegrind:/tmp/xdebug
+  slow-database:
+    build: ./docker/slow-db
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: xdebug_teste
+      MYSQL_USER: xdebug_teste
+      MYSQL_PASSWORD: xdebug_teste
+      MYSQL_ROOT_PASSWORD: xdebug_teste
+    cap_add: 
+      - NET_ADMIN
