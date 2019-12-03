@@ -20,6 +20,7 @@ services:
       - ./slow-composer/cachegrind:/tmp/xdebug
   slow-database:
     build: ./docker/slow-db
+    # Adiciona um delay de rede de 1500ms nas requisições do banco
     ports: 
       - 3306:3306
     environment:
@@ -29,3 +30,14 @@ services:
       MYSQL_ROOT_PASSWORD: xdebug_teste
     cap_add: 
       - NET_ADMIN
+
+  slow-wordpress:
+    build: ./docker
+    ports:
+      - 8083:80
+    links:
+      - slow-database:db
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
+      - ./wordpress/cachegrind:/tmp/xdebug
