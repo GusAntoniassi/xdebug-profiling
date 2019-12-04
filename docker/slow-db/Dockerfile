@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install -y iproute2
 
 # Adicionamos o comando que vai deixar lento na segunda linha do script de entrypoint,
 # logo após a shebang (#!/bin/bash)
-RUN sed -i "s/\/bin\/bash/\/bash\n${SLOW_DB_COMMAND}/" /usr/local/bin/docker-entrypoint.sh
+RUN sed -i "s/\/bin\/bash/\/bin\/bash\n${SLOW_DB_COMMAND}/" /usr/local/bin/docker-entrypoint.sh
